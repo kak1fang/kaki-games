@@ -99,11 +99,11 @@ var sketchProc = function(processingInstance) {
                     ballYv= -ballYv;    
                 }
                 //moving
-                if (keyIsPressed &&
+                if (__keyPressed &&
                     keyCode === UP){
                     paddle2Y= paddle2Y-5;
                 }
-                if (keyIsPressed &&
+                if (__keyPressed &&
                     keyCode === DOWN){
                     paddle2Y= paddle2Y+5;
                 }
