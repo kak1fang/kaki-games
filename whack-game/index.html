@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Kaki's whack game</title>
+
+        <!-- Include the processing.js library -->
+        <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+
+        <!-- Include your processing sketch -->
+        <script src="whack-game.js"></script>
+
+        <!-- Some style to make it look better -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <section class="section">
+            <div class="container">
+                <h1 class="title">kaki's whack game </h1>
+                
+                <!-- Your processing sketch -->
+                <canvas id="myCanvas"></canvas>
+                <script>        
+                    // Get the canvas that Processing-js will use
+                    var canvas = document.getElementById("myCanvas"); 
+                    // Pass the function sketchProc (defined in game.js) to Processing's constructor.
+                    var processingInstance = new Processing(canvas, sketchProc); 
+                </script>
+            </div>
+            
+            <!-- Put a space between the canvas and the about section -->
+            <br>
+
+            <!-- An area to have -->
+            <div class="container">
+                <h3 class="subtitle">About this Sketch</h3>
+                Pong is one of the earliest arcade video games. It is a table tennis sports game featuring simple two-dimensional graphics. The game was originally manufactured by Atari, which released it in 1972. Allan Alcorn created Pong as a training exercise assigned to him by Atari co-founder Nolan Bushnell. Bushnell based the idea on an electronic ping-pong game included in the Magnavox Odyssey, which later resulted in a lawsuit against Atari. Surprised by the quality of Alcorn's work, Bushnell and Atari co-founder Ted Dabney decided to manufacture the game.
+                the plan is to make the player choose the ball size, speed, colour of ball, colour of background, and .etc.
+                source: https://en.wikipedia.org/wiki/Pong
+                
+                directions: use arrow keys, up and down, to control the paddle to bounce the ball.
+                            the controling way: arrow key.
+                            the main goal is stay alive as long as possible.
+            </div>
+        </section>
+    </body>
+</html>
