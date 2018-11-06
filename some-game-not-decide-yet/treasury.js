@@ -1,12 +1,14 @@
-var Ufo;
+var ufo;
 var grid;
+var planet;
 
 // Gets called before game is loaded. 
 // Use it to load images & other resources
 var preload = function() {
 
     grid = new Grid(10, 10);
-    Ufo = new Ufo(grid, 0, 0);
+    ufo = new Ufo(grid, 0, 0);
+    planet = new Planet(grid, 5 , 5);
 }
 
 // Before the draw function ever gets called, setup gets called
@@ -22,63 +24,24 @@ var setup = function() {
 var draw = function() {
 
     // Draw the grid first, then the boy on top of it
+    background(255,255,255);
     grid.drawGrid();
-    Ufo.draw();
+    ufo.draw();
+    planet.draw();
+    
 }
 
 function keyTyped() {
     if (key === 'w') {
-        Ufo.moveUp()
+        ufo.moveUp()
     }
     if (key === 's') {
-        Ufo.moveDown()
+        ufo.moveDown()
     }
     if (key === 'a') {
-        Ufo.moveLeft()
+        ufo.moveLeft()
     }
     if (key === 'd') {
-        Ufo.moveRight();
-    }
-}
-Ufo.js (starter)
-class UFo {
-    constructor(grid, col, row) {
-
-        // TODO: save grid, col, and row as instance variables on this object
-        // TODO: call loadImage('') and save that as a this.img variable
-        this.grid= loadImage('assets/ufo_game_enemy.png');
-        this.col = 10;
-        this.row = 10;
-        this.direction = DIRECTION.RIGHT;
-    }
-
-    draw() {
-        // TODO: tell the grid to draw an image onto the grid.  
-        //       Give it the image, column, row, and direction 
-        //       to draw the image. Take a look at grid.js to find & 
-        //      try to understand this function
-        Grid = loadImage('assets/ufo_game_enemy.png');
-        
-    }
-
-    moveRight() {
-        // TODO: move your character to the right by one column (but don't let it leave the screen)
-        // Also, set the dirsection as DIRECTION.RIGHT so that the image get's draw at the correct rotation
-        Ufo.col +=1;
-    }
-    moveLeft() {
-        // TODO: move your character to the left one column (but don't let it leave the screen)
-        // Also, set the direction appropiately
-        Ufo.col -=1;
-    }
-    moveUp() {
-        // TODO: move your character up by one row (but don't let it leave the screen)
-        // Also, set the direction appropiately
-        Ufo.row -=1;
-    }
-    moveDown() {
-        // TODO: move your character down by one row (but don't let it leave the screen)
-        // Also, set the direction appropiately
-        Ufo.row +=1;
+        ufo.moveRight();
     }
 }
