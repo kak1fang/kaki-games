@@ -1,14 +1,21 @@
 var ufo;
 var grid;
-var planet;
+
 
 // Gets called before game is loaded. 
 // Use it to load images & other resources
+
+
+
+var gameElement = [];
 var preload = function() {
 
     grid = new Grid(10, 10);
     ufo = new Ufo(grid, 0, 0);
-    planet = new Planet(grid, 5 , 5);
+    for ( let i =0; i <5; i++){
+        let planet = new Planet(grid, chooseRandomInteger(10) , chooseRandomInteger(10))
+        gameElement.push(planet);
+    }
 }
 
 // Before the draw function ever gets called, setup gets called
@@ -27,7 +34,11 @@ var draw = function() {
     background(255,255,255);
     grid.drawGrid();
     ufo.draw();
-    planet.draw();
+
+    for(let element of gameElement) {
+        element.draw();
+    }
+    
     
 }
 
