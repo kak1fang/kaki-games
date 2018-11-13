@@ -1,6 +1,7 @@
 var ufo;
 var grid;
 var myBGM;
+var score = 0;
 
 
 
@@ -22,7 +23,7 @@ var preload = function() {
     soundFormats('mp3', 'ogg');
     myBGM = loadSound('assets/ourmountain.mp3')
     myMoveSound = loadSound('assets/movement1.wav')
-   
+    myCollectSound = loadSound('assets/collect_planet.wav')
 }
 
     
@@ -50,14 +51,8 @@ var draw = function() {
 
     for(let element of gameElement) {
         element.draw();
-        
     }
-    
-
-    
-    
-    
-    
+    text ( 'score :' + score, 10, 10);
 }
 
 
@@ -65,18 +60,18 @@ var draw = function() {
 
 function keyTyped(){
     var direction;
-    if (key === 'w') {
-        direction = DIRECTION.UP;
-    }
-    if (key === 's') {
-        direction = DIRECTION.DOWN;
-    }
-    if (key === 'a') {
-        direction = DIRECTION.LEFT;
-    }
-    if (key === 'd') {
-        direction = DIRECTION.RIGHT;
-    }
+    // if (key === 'w') {
+    //     direction = DIRECTION.UP;
+    // }
+    // if (key === 's') {
+    //     direction = DIRECTION.DOWN;
+    // }
+    // if (key === 'a') {
+    //     direction = DIRECTION.LEFT;
+    // }
+    // if (key === 'd') {
+    //     direction = DIRECTION.RIGHT;
+    // }
     
     
     if (key === 'w'){
@@ -95,11 +90,13 @@ function keyTyped(){
         ufo.moveLeft()
         myMoveSound.play();
     }
-    Ufo.move(direction);
+    
     for(var i= gameElement.length -1; i >= 0; i--){
         var element = gameElement[i];
-        if(Ufo.col === element.col && Ufo.row === element.row){
+        if(ufo.col === element.col && ufo.row === element.row){
             gameElement.splice (i,1);
+            score += 1;
+            myCollectSound.play()
         }
     }
 }
