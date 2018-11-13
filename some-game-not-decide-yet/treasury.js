@@ -60,35 +60,46 @@ var draw = function() {
     
 }
 
-function keyTyped() {
+
+
+
+function keyTyped(){
+    var direction;
     if (key === 'w') {
-        ufo.moveUp()
-        myMoveSound.play();
-        if( Ufo.rows === gameElement.rows && Ufo.cols ===gameElement.cols){
-            gameElement.splice(i, 1);
-        }
-        
+        direction = DIRECTION.UP;
     }
     if (key === 's') {
-        ufo.moveDown()
-        myMoveSound.play();
-        if( Ufo.rows === gameElement.rows && Ufo.cols ===gameElement.cols){
-            gameElement.splice(i, 1);
-        }
-        
+        direction = DIRECTION.DOWN;
     }
     if (key === 'a') {
-        ufo.moveLeft()
+        direction = DIRECTION.LEFT;
+    }
+    if (key === 'd') {
+        direction = DIRECTION.RIGHT;
+    }
+    
+    
+    if (key === 'w'){
+        ufo.moveUp()
         myMoveSound.play();
-        if( Ufo.rows === gameElement.rows && Ufo.cols ===gameElement.cols){
-            gameElement.splice(i, 1);
-        }
     }
     if (key === 'd') {
         ufo.moveRight();
         myMoveSound.play();
-        if( Ufo.rows === gameElement.rows && Ufo.cols ===gameElement.cols){
-            gameElement.splice(i, 1);
+    }
+    if (key === 's') {
+        ufo.moveDown()
+        myMoveSound.play();
+    }
+    if (key === 'a') {
+        ufo.moveLeft()
+        myMoveSound.play();
+    }
+    Ufo.move(direction);
+    for(var i= gameElement.length -1; i >= 0; i--){
+        var element = gameElement[i];
+        if(Ufo.col === element.col && Ufo.row === element.row){
+            gameElement.splice (i,1);
         }
     }
 }
