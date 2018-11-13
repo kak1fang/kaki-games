@@ -12,6 +12,7 @@ var score = 0;
 
 
 var gameElement = [];
+var enemyElement = [];
 var preload = function() {
 
     grid = new Grid(10, 10);
@@ -20,10 +21,15 @@ var preload = function() {
         let planet = new Planet(grid, chooseRandomInteger(10) , chooseRandomInteger(10))
         gameElement.push(planet);
     }
+    for ( let i =0; i <4; i++){
+        let enemy = new Enemy(grid, chooseRandomInteger(10) , chooseRandomInteger(10))
+        enemyElement.push(enemy);
+    }
     soundFormats('mp3', 'ogg');
     myBGM = loadSound('assets/ourmountain.mp3')
     myMoveSound = loadSound('assets/movement1.wav')
     myCollectSound = loadSound('assets/collect_planet.wav')
+    myEnemySound = loadSound('assets/collect_enemy.wav')
 }
 
     
@@ -50,6 +56,9 @@ var draw = function() {
     ufo.draw();
 
     for(let element of gameElement) {
+        element.draw();
+    }
+    for(let element of enemyElement) {
         element.draw();
     }
     text ( 'score :' + score, 10, 10);
@@ -97,6 +106,31 @@ function keyTyped(){
             gameElement.splice (i,1);
             score += 1;
             myCollectSound.play()
+        }
+    }
+    for(var i= enemyElement.length -1; i >= 0; i--){
+        var element = enemyElement[i];
+        if(ufo.col === element.col && ufo.row === element.row){
+            enemyElement.splice (i,1);
+            score -= 2;
+            myEnemySound.play()
+        }
+    }
+    for(var i= enemyElement.length -1; i >= 0; i--){
+        var element = enemyElement[i];
+        if(ufo.col)
+    }
+    if(gameElement.length === 0) {
+        for ( let i =5; i <10; i++){
+            let planet = new Planet(grid, chooseRandomInteger(10) , chooseRandomInteger(10))
+            gameElement.push(planet);
+        }
+    }
+    
+    if(enemyElement.length === 0) {
+        for ( let i =5; i <9; i++){
+            let enemy = new Enemy(grid, chooseRandomInteger(10) , chooseRandomInteger(10))
+            enemyElement.push(enemy);
         }
     }
 }
