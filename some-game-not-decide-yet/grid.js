@@ -4,7 +4,7 @@ const DIRECTION = Object.freeze({
     LEFT: Symbol("LEFT"),
     RIGHT: Symbol("RIGHT")
 });
-
+const GRID_BUFFER = 10;
 class Grid {
 
     // Make a new grid with a specified number of rows and colums
@@ -17,10 +17,10 @@ class Grid {
     // as if it were a variable instead of a function.
     //   You use someGrid.cellWidth rather then someGrid.cellWidth()
     get cellWidth() {
-        return width /this.cols;
+        return (min(width, height) - 2*GRID_BUFFER) / this.cols;
     }
     get cellHeight() {
-        return height / this.cols;
+        return (min(width, height) - 2*GRID_BUFFER) / this.rows;
     }
 
     // Pass in the column index & this function returns the center 

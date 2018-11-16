@@ -39,9 +39,10 @@ var preload = function() {
 //   After resources are loaded, sets up the game
 var setup = function() {
 
-    var canvas = createCanvas(400, 400);
-    canvas.parent('sketch-holder');
+    var canvas = createCanvas(windowWidth, windowHeight);
+    windowResized();
     myBGM.loop();
+    frameRate(60);
     
     
 }
@@ -60,6 +61,31 @@ var draw = function() {
     }
     for(let element of enemyElement) {
         element.draw();
+    }
+    //closer to the ufo
+    for(var i= enemyElement.length -1; i >= 0; i--){
+        var element = enemyElement[i];
+        if(ufo.col > element.col){
+            element.col += 0.008; 
+        }
+        if(ufo.col < element.col){
+            element.col -= 0.008; 
+        }
+        if(ufo.row > element.row){
+            element.row += 0.008; 
+        }
+        if(ufo.row < element.row){
+            element.row -= 0.008; 
+        }
+    }
+    // get touch minus point
+    for(var i= enemyElement.length -1; i >= 0; i--){
+        var element = enemyElement[i];
+        if(abs(ufo.col - element.col) < 0.7 && abs(ufo.row - element.row) < 0.7){
+            enemyElement.splice (i,1);
+            score -= 1.5;
+            myEnemySound.play()
+        }
     }
     text ( 'score :' + score, 10, 10);
 }
@@ -108,18 +134,9 @@ function keyTyped(){
             myCollectSound.play()
         }
     }
-    for(var i= enemyElement.length -1; i >= 0; i--){
-        var element = enemyElement[i];
-        if(ufo.col === element.col && ufo.row === element.row){
-            enemyElement.splice (i,1);
-            score -= 2;
-            myEnemySound.play()
-        }
-    }
-    for(var i= enemyElement.length -1; i >= 0; i--){
-        var element = enemyElement[i];
-        if(ufo.col)
-    }
+    
+    
+    
     if(gameElement.length === 0) {
         for ( let i =5; i <10; i++){
             let planet = new Planet(grid, chooseRandomInteger(10) , chooseRandomInteger(10))
@@ -133,4 +150,9 @@ function keyTyped(){
             enemyElement.push(enemy);
         }
     }
+}
+
+function windowResized(){
+    let size = min (windowWidth, windowHeight)
+    resizeCanvas(size,size);
 }
