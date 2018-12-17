@@ -7,6 +7,9 @@ var score = 0;
 var GameWin = 0;
 var GameLose = 0;
 var GameStart = 0;
+var bullet;
+var bulletSpeedX = 0;
+var bulletSpeedY = 0;
 
 
 
@@ -19,6 +22,7 @@ var GameStart = 0;
 var gameElement = [];
 var enemyElement = [];
 var recoverElement = [];
+var bulletElement = [];
 var preload = function() {
 
     grid = new Grid(10, 10);
@@ -37,6 +41,7 @@ var preload = function() {
         let enemy = new Enemy(grid, chooseRandomInteger(10) , chooseRandomInteger(10))
         enemyElement.push(enemy);
     }
+    bullet = new Bullet;
     
     soundFormats('mp3', 'ogg');
     myBGM = loadSound('assets/ourmountain.mp3')
@@ -63,6 +68,7 @@ var setup = function() {
 //  Gets called over and over again as the
 // game draws new frames
 var draw = function() {
+    
     keyPressed= function(){
         GameStart=1;
     };
@@ -91,12 +97,19 @@ var draw = function() {
     }
 
 
-    if( key === 'r'){
-        GameWin = 0;
-        GameLose = 0;
-        score = 0;
-        health.lives =6;
-        enemySpeed = 0.010;
+    if( GameLose ===1 || GameWin===1){
+        if(key === 'r'){
+            GameWin = 0;
+            GameLose = 0;
+            score = 0;
+            health.lives =6;
+            enemySpeed = 0.010;
+            
+            for(let i =0; i < 5; i ++){
+                
+                enemyElement.splice(i,1);
+            }
+        }
     }
     
     
@@ -150,7 +163,9 @@ var draw = function() {
     for(let element of enemyElement) {
         element.draw();
     }
-   
+    for( let element of bulletElement){
+        element.draw();
+    }
     //closer to the ufo
     for(var i= enemyElement.length -1; i >= 0; i--){
         var element = enemyElement[i];
@@ -165,6 +180,38 @@ var draw = function() {
         }
         if(ufo.row < element.row){
             element.row -= enemySpeed; 
+        }
+    }
+    
+    for(var i = bulletElement.length - 1; i >= 0 ; i--){
+        var element = bulletElement[i];
+        element.row += bulletSpeedX;
+        element.col += bulletSpeedY;      
+    }
+    for(var i = bulletElement.length - 1; i >= 0 ; i--){
+        var element = bulletElement[i];
+        if(abs(ufo.col - element.col) < 0.7 && abs(ufo.row - element.row) < 0.7){
+            bulletElement.splice (i,1);
+            
+            myEnemySound.play()
+            health.lives = health.lives -1 ;
+        
+        }
+    }
+
+    for(var i = bulletElement.length - 1; i >=0 ; i--){
+        var element = bulletElement[i];
+        if(element.row>10){
+            bulletElement.splice(i,1);    
+        }
+        if(element.row<0){
+            bulletElement.splice(i,1);
+        }
+        if(element.col>10){
+            bulletElement.splice(i,1);
+        }
+        if(element.col<0){
+            bulletElement.splice(i,1);
         }
     }
     // get touch minus point
@@ -196,7 +243,25 @@ var draw = function() {
 
     }
    
-
+    if( bulletElement.length < 2){
+        for( let i = 0; i < 1 -bulletElement.length; i++){
+            
+            var element = enemyElement[i];
+            let bullet = new Bullet(grid, element.col, element. row);
+            bulletElement.push(bullet);
+            var y = abs(ufo.col - element.col);
+            var x = abs(ufo.row - element.row);
+            var z = (x^2 + y^2)^0.5
+            bulletSpeedX = x/z * 0.1;
+            bulletSpeedY = y/z * 0.1;
+            if( element.col > ufo.col){
+                bulletSpeedY = bulletSpeedY * -1;
+            }
+            if( element.row > ufo.row){
+                bulletSpeedX = bulletSpeedX * -1;
+            }
+        }
+    }
 
 
     textSize(20);
@@ -262,6 +327,7 @@ function keyTyped(){
         }
     }
     for (var i =recoverElement.length -1; i >= 0 ; i--){
+        
         var element = recoverElement[i];
         if( element.col===ufo.col && element.row === ufo.row){
             if(health.lives < 6){
