@@ -1,0 +1,14 @@
+h1 {
+    font-family: Arial;
+    
+
+}
+
+.box {
+    height: 50px;
+    width: 50px;
+    background: rgb(50,250,50);
+    display: inline-block;
+    margin: 5px;
+}
+
