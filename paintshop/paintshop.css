@@ -1,14 +1,50 @@
-h1 {
-    font-family: Arial;
+
+
+
+body{
+    margin: 0;
+}
+
+#bottomTray{
+    position: absolute;
+    background: rgba(214, 123, 123, 0.3);
+    bottom: 0;
+    right: 0;
+    padding :10px ;
+}
+
+#bottomTray h3{
+    margin: 4px;
     
-
 }
 
-.box {
-    height: 50px;
-    width: 50px;
-    background: rgb(50,250,50);
+.box{
     display: inline-block;
-    margin: 5px;
+    width: 30px;
+    height: 30px;
+    border: 1px yellow;
 }
 
+.red{
+    background: red;
+}
+
+.orange{
+    background: orange;
+}
+
+.yellow{
+    background: yellow;
+}
+
+.green{
+    background: green;
+}
+
+.blue{
+    background: blue;
+}
+
+.purple{
+    background: purple;
+}
