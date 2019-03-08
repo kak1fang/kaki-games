@@ -8,9 +8,10 @@ body{
 #bottomTray{
     position: absolute;
     background: rgba(214, 123, 123, 0.3);
-    bottom: 0;
+    bottom: 8px;
     right: 0;
     padding :10px ;
+    border-radius: 16px;
 }
 
 #bottomTray h3{
@@ -47,4 +48,9 @@ body{
 
 .purple{
     background: purple;
+}
+
+.save{
+    background-image: "download.png";
+
 }

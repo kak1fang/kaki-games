@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <link rel="stylesheet" href="paintshop.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     
     <title>Document</title>
     <script src="p5.dom.min.js"></script>
@@ -23,15 +24,38 @@
         
 
         
-        <a  class="box red"></a>
-        <a  class="box orange"></a>
-        <a  class="box yellow"></a>
+        <a  class="box red" onclick="setBrush('red')"></a>
+        <a  class="box orange" onclick="setBrush('orange')"></a>
+        <a  class="box yellow" onclick="setBrush('yellow')"></a>
 
 
-        <a  class="box green"></a>
-        <a  class="box blue"></a>
-        <a  class="box purple"></a>
+        <a  class="box green" onclick="setBrush('green')"></a>
+        <a  class="box blue" onclick="setBrush('blue')"></a>
+        <a  class="box purple" onclick="setBrush('purple')"></a>
+        <a class="box" onclick = "save()" >
+            <i class="far fa-save"></i>
+        </a>
+
+        <center>
+            <h3>
+                    BrushSize
+            </h3>
+       </center>
+
+       <center>
+        <h3>
+            <input type="range"min="5" max="100" oninput="strokeWeight(this.value)">
+        </h3>
+   </center>
+        <a class="box" onclick = "canvasReset(event)" >
+        <i class="fas fa-trash-alt"></i>
+        </a>
+        <input type="file" name="upload" id="">
+            <i class="fas fa-upload"></i>
+            </a>
+     
     </div>
+
     
 </body>
 </html>
