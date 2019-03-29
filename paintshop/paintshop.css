@@ -7,7 +7,7 @@ body{
 
 #bottomTray{
     position: absolute;
-    background: rgba(214, 123, 123, 0.3);
+    background: rgb(214, 123, 123);
     bottom: 8px;
     right: 0;
     padding :10px ;
@@ -16,7 +16,7 @@ body{
 
 #bottomTray h3{
     margin: 4px;
-    
+        
 }
 
 .box{
@@ -24,8 +24,12 @@ body{
     width: 30px;
     height: 30px;
     border: 1px yellow;
+    box-shadow: 2px 2px 2px;
+    transition: box-shadow 0.25s;
 }
-
+.box:hover{
+    box-shadow:0px 0px 2px;
+}
 .red{
     background: red;
 }
@@ -53,4 +57,22 @@ body{
 .save{
     background-image: "download.png";
 
+}
+
+dialog {
+    position: absolute;
+
+    z-index: 2;
+    top: 10px;
+    bottom: 10px;
+
+}
+
+
+#openfile {
+    background: green;
+}
+
+dialog button{
+    background: yellow
 }

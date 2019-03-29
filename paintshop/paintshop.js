@@ -21,12 +21,15 @@ function setup(){
     createCanvas(windowWidth, windowHeight);
     background(255, 255, 255);
     input = createFileInput(handleFile);
-    input.position(0, 0);
+    input.position(0,0);
+    
 }
 function draw(){
     var previousMouseX = -1,
     previousMouseY = -1;
-    
+    if(img){
+        Image(img,0,0,width,height);
+    }
 draw= function() {
     if( mouseIsPressed && previousMouseX!==-1 ){
         line(mouseX, mouseY, previousMouseX, previousMouseY);
@@ -76,13 +79,35 @@ function canvasReset(event){
 
         
 }
-function handleFile(file) {
+
+function openDialog(id){
+    let elem = document.getElementById(id)
+    elem.setAttribute('open',true);
+}
+
+function closeDialog(id){
+    let elem = document.getElementById(id)
+    elem.removeAttribute('open');
+}
+function changeResolution(id){
+    let elem = document.getElementById(id);
+    resizeCanvas(id);
+    background(redColor);
+}
+function handleFile(file){
     print(file);
-    if (file.type === 'image') {
-      img = createImg(file.data);
-      img.hide();
+    if( file.type ==='image'){
+        img = creatImg(file.date);
+        img.hide();
     }
-  }
+}
+// function handleFile(file) {
+//     print(file);
+//     if (file.type === 'image') {
+//       img = createImg(file.data);
+//       img.hide();
+//     }
+//   }
 
 //we dont want to erase the painting
 // function windowResized() {

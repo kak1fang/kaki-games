@@ -1,0 +1,23 @@
+body{
+    font-family: sans-serif;
+}
+
+
+
+dialog {
+    position: absolute;
+
+    z-index: 2;
+    top: 10px;
+    bottom: 10px;
+
+}
+
+
+#openfile {
+    background: green;
+}
+
+dialog button{
+    background: yellow
+}

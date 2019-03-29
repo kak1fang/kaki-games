@@ -22,7 +22,7 @@
        </center>
         
         
-
+       <center>
         
         <a  class="box red" onclick="setBrush('red')"></a>
         <a  class="box orange" onclick="setBrush('orange')"></a>
@@ -32,9 +32,7 @@
         <a  class="box green" onclick="setBrush('green')"></a>
         <a  class="box blue" onclick="setBrush('blue')"></a>
         <a  class="box purple" onclick="setBrush('purple')"></a>
-        <a class="box" onclick = "save()" >
-            <i class="far fa-save"></i>
-        </a>
+    </center>
 
         <center>
             <h3>
@@ -47,14 +45,46 @@
             <input type="range"min="5" max="100" oninput="strokeWeight(this.value)">
         </h3>
    </center>
+        <center>
         <a class="box" onclick = "canvasReset(event)" >
         <i class="fas fa-trash-alt"></i>
+        
+        <a class="box" onclick = "save()" >
+                <i class="far fa-save"></i>
         </a>
-        <input type="file" name="upload" id="">
-            <i class="fas fa-upload"></i>
-            </a>
-     
+    </center>
+    
+    <div class="buttons">
+      <button onclick="openDialog('openfile')">
+      +
+      </button>
+      
     </div>
+
+    <dialog open id="openfile">
+      <center>
+        <h2>new sketch. resolution:</h2>
+      <button onclick="changeResolution('800,600')">800*600</button>
+      <button onclick="changeResolution('1024,768')">1024*768</button>
+      <button onclick="changeResolution('1920,1080')">1920*1080</button>
+      <h2>upload picture</h2>
+    </a>
+    <input type="file" name="upload" id="">
+        <i class="fas fa-upload"></i>
+        </a>
+      <h2></h2>
+      <button onclick="closeDialog('openfile')">Close</button>
+    </center>
+  </dialog>
+      
+      <menu>
+        <button id="updateDetails">Update details</button>
+      </menu>
+      
+      <output aria-live="polite"></output>
+
+    </div>
+
 
     
 </body>
