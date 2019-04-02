@@ -20,8 +20,10 @@ function preload(){
 function setup(){
     createCanvas(windowWidth, windowHeight);
     background(255, 255, 255);
+    let ImageInputParent = document.querySelector('#openfile');
     input = createFileInput(handleFile);
-    input.position(0,0);
+    input.parent(ImageInputParent)
+  
     
 }
 function draw(){
@@ -89,17 +91,26 @@ function closeDialog(id){
     let elem = document.getElementById(id)
     elem.removeAttribute('open');
 }
-function changeResolution(id){
-    let elem = document.getElementById(id);
-    resizeCanvas(id);
-    background(redColor);
+function changeResolution(x,y){
+    // let elem = document.getElementById(id);
+    resizeCanvas(x,y);
+    background(5,6,10);
 }
 function handleFile(file){
     print(file);
-    if( file.type ==='image'){
-        img = creatImg(file.date);
-        img.hide();
+    if( file.type !=='image'){
+        return;
     }
+    loadImage(file.data, function(png){
+        if(!png){
+            return;
+        }
+        noCanvas();
+        createCanvas(png.width, png.height);
+        image(png,0,0);
+        
+        
+    })
 }
 // function handleFile(file) {
 //     print(file);

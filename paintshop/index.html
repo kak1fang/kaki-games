@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     
     <title>Document</title>
-    <script src="p5.dom.min.js"></script>
     <script src="p5.min.js"></script>
+    <script src="p5.dom.min.js"></script>
+    
     <script src="paintshop.js"></script>
 </head>
 <body>
@@ -61,21 +62,7 @@
       
     </div>
 
-    <dialog open id="openfile">
-      <center>
-        <h2>new sketch. resolution:</h2>
-      <button onclick="changeResolution('800,600')">800*600</button>
-      <button onclick="changeResolution('1024,768')">1024*768</button>
-      <button onclick="changeResolution('1920,1080')">1920*1080</button>
-      <h2>upload picture</h2>
-    </a>
-    <input type="file" name="upload" id="">
-        <i class="fas fa-upload"></i>
-        </a>
-      <h2></h2>
-      <button onclick="closeDialog('openfile')">Close</button>
-    </center>
-  </dialog>
+    
       
       <menu>
         <button id="updateDetails">Update details</button>
@@ -85,6 +72,18 @@
 
     </div>
 
+    <dialog id="openfile">
+        <center>
+          <h2>new sketch. resolution:</h2>
+        <button onclick="changeResolution(800,600)">800*600</button>
+        <button onclick="changeResolution(1024,768)">1024*768</button>
+        <button onclick="changeResolution(1920,1080)">1920*1080</button>
+        <h2>upload picture</h2> 
+        
+        <br>
+        <button onclick="closeDialog('openfile')">Close</button>
+      </center>
+    </dialog>
 
     
 </body>
