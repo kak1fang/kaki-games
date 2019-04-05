@@ -8,6 +8,7 @@ let purpleColor;
 let size;
 var input;
 var img;
+var r;
 function preload(){
     redColor = color('#FF0000');
     orangeColor = color('#FFA500');
@@ -22,7 +23,10 @@ function setup(){
     background(255, 255, 255);
     let ImageInputParent = document.querySelector('#openfile');
     input = createFileInput(handleFile);
-    input.parent(ImageInputParent)
+    input.parent(ImageInputParent); 
+    committedDrawing = createGraphics(windowWidth, windowHeight);
+    committedDrawing.background(255);
+
   
     
 }
@@ -30,11 +34,11 @@ function draw(){
     var previousMouseX = -1,
     previousMouseY = -1;
     if(img){
-        Image(img,0,0,width,height);
+        image(img,0,0,width,height);
     }
-draw= function() {
+
     if( mouseIsPressed && previousMouseX!==-1 ){
-        line(mouseX, mouseY, previousMouseX, previousMouseY);
+        committedDrawing.line(mouseX, mouseY, previousMouseX, previousMouseY);
         
     }
     if( mouseIsPressed){
@@ -44,9 +48,19 @@ draw= function() {
         previousMouseX=-1;
         previousMouseY=-1;
     }
+    image(committedDrawing,0,0);
+    
+    
+    let r = document.querySelector('#range').value;
+    fill(0);
+    ellipse(mouseX,mouseY, 2*r,2*r, 10);
+    background(255,255,255);
     
 };
-}
+
+
+
+
 function setBrush(color){
     if(color == 'red'){
         stroke(redColor);
@@ -101,13 +115,13 @@ function handleFile(file){
     if( file.type !=='image'){
         return;
     }
-    loadImage(file.data, function(png){
-        if(!png){
+    loadImage(file.data, function(jpg){
+        if(!jpg){
             return;
         }
         noCanvas();
-        createCanvas(png.width, png.height);
-        image(png,0,0);
+        createCanvas(jpg.width, jpg.height);
+        image(jpg,0,0);
         
         
     })
