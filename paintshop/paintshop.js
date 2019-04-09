@@ -30,7 +30,7 @@ function setup(){
     // committedDrawing.background(255);
 
   
-    
+
 }
 var draw = function(){
     image(committedDrawing,0,0);
