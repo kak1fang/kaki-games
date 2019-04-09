@@ -33,11 +33,14 @@ function setup(){
 
 }
 var draw = function(){
+    background(255,255,255);
     image(committedDrawing,0,0);
     
     if(img){
         image(img,0,0,width,height);
     }
+    let r = document.querySelector('#range').value;
+    strokeWeight(r);
 
     if( mouseIsPressed && previousMouseX!==-1 ){
         committedDrawing.line(mouseX, mouseY, previousMouseX, previousMouseY);
@@ -53,10 +56,10 @@ var draw = function(){
     
     
     
-    let r = document.querySelector('#range').value;
+  
     fill(0);
     ellipse(mouseX,mouseY, 2*r,2*r, 10);
-    background(255,255,255);
+ 
     
     
 };
