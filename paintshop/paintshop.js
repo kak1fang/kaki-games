@@ -9,6 +9,8 @@ let size;
 var input;
 var img;
 var r;
+var previousMouseX = -1,
+    previousMouseY = -1;
 function preload(){
     redColor = color('#FF0000');
     orangeColor = color('#FFA500');
@@ -20,19 +22,19 @@ function preload(){
 }
 function setup(){
     createCanvas(windowWidth, windowHeight);
-    background(255, 255, 255);
+    
     let ImageInputParent = document.querySelector('#openfile');
     input = createFileInput(handleFile);
     input.parent(ImageInputParent); 
     committedDrawing = createGraphics(windowWidth, windowHeight);
-    committedDrawing.background(255);
+    // committedDrawing.background(255);
 
   
     
 }
-function draw(){
-    var previousMouseX = -1,
-    previousMouseY = -1;
+var draw = function(){
+    image(committedDrawing,0,0);
+    
     if(img){
         image(img,0,0,width,height);
     }
@@ -48,13 +50,14 @@ function draw(){
         previousMouseX=-1;
         previousMouseY=-1;
     }
-    image(committedDrawing,0,0);
+    
     
     
     let r = document.querySelector('#range').value;
     fill(0);
     ellipse(mouseX,mouseY, 2*r,2*r, 10);
     background(255,255,255);
+    
     
 };
 

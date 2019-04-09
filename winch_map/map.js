@@ -19,7 +19,8 @@ function draw(){
        
         
         let p = new Vertex(mouseX, mouseY);
-        vertexArray.push(p);
+        vertexArray.push(p);.
+        .
     }
 
     for(var i=0; i<=vertexArray.length; i++){
