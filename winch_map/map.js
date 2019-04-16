@@ -1,5 +1,7 @@
 let vertexArray = [];
 let selectArray = [];
+var numberOfUnselected = 0;
+var vertexSelected = false;
 function preload(){
 
 }
@@ -7,7 +9,7 @@ function preload(){
 function setup(){
  createCanvas(800, 600);
  background(25,40,99);
- vertexArray.push(200,300);
+
 }
 
 
@@ -32,26 +34,54 @@ function draw(){
 function mousePressed(){
     for(var i=0; i <=vertexArray.length-1; i++){
         let e = vertexArray[i];
-        if(Math.abs(mouseX - e.x) <=10 && Math.abs(mouseY - e.y) <= 10){
-            e.clickf();
-            e.state = true;
+        e.detectState();
+        if(e.state == false){
+            numberOfUnselected = numberOfUnselected + 1;
         }
-        else{
-            let p = new Vertex(mouseX, mouseY);
-            vertexArray.push(p);
-            p.draw();
-        }
-    }
-    for(var i=0; i <=vertexArray.length-1; i++){
-        let e = vertexArray[i];
-        if(e.state = true){
+        if(e.state == true){
+            let selected = true;
             for(var i=0; i <=vertexArray.length-1; i++){
-                let ae= vertexArray[i];
-                if(Math.abs(mouseX - ae.x) <=10 && Math.abs(mouseY - ae.y) <= 10){
-                line(ae.x, ae.y, e.x, e.y);
-            } 
+                let e = vertexArray[i];
+                if(e.select == true){
+                    e.draw();
+                }
+            }
+            if(e.select == true){
+                e.draw();
+                e.select = false;
+            } else{
+            e.draw(selected);
+            e.select = true;
+            }
+            vertexSelected = true;
+            e.state = false;
+            
+        }
+    
+    }
+    
+    if( numberOfUnselected == vertexArray.length){
+        let v = new Vertex(mouseX, mouseY);
+        vertexArray.push(v);
+        for(var i =0; i<=vertexArray.length-1; i++){
+            let e = vertexArray[i];
+            if(e.select == true){
+                line(v.x, v.y, e.x, e.y);
+                e.draw();
+                
             }
         }
+        let selected = true;
+        v.draw(selected);
+        v.select == true;
+        numberOfUnselected = 0;
     }
+
+    if( vertexSelected == true){
+        numberOfUnselected = 0;
+        vertexSelected = false;
+    }
+
+    
 }
 
