@@ -3,7 +3,7 @@
     constructor(){
         
         this.selectVertex = null;
-        this.vertexes = [];
+        this.vertexArray = [];
         this.connections = {};
         this.connectionsNumber = 0;
 
@@ -21,8 +21,12 @@
                 v.getSelectVertex();
                 return selectVertex = i;
             }
+            else{
+                numberOfUnselected++;            }
         }
-        return selectVertex = null;
+        if( numberOfUnselected == vertexArray.length){
+            p.addVertex;
+        }
     }
 
 

@@ -1,7 +1,8 @@
-let vertexArray = [];
+
 let selectVertex = 100;
 var numberOfUnselected = 0;
 var vertexSelected = false;
+var mouseonVertex = true;
 function preload(){
 
 }
@@ -33,19 +34,6 @@ function draw(){
 
 function mousePressed(){
     
-    for( var i = 0; i <= vertexArray.length; i++){
-        let v = vertexArray[i];
-        v.dist();
-        
-    }
-    
-    if(numberOfUnselected == vertexArray.length){
-        let v = new Vertex(mouseX, mouseY);   
-        v.addVertex(mouseX, mouseY);
-        var select;
-        v.draw(select);
-    }
-
-    
+    getVertexAtPoint(mouseX,mouseY); 
 
 }
