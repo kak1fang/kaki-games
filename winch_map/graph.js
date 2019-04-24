@@ -16,34 +16,29 @@
     getVertexAtPoint(x,y){
         for(var i=0; i < vertexArray.length; i++){
             let v = vertexArray[i];
-            v.mouseWithVertex();
-            if(mouseOnVertex){
-                v.getSelectVertex();
-                return selectVertex = i;
+            if(v.mouseWithVertx(x,y) == mouseOnVertex){
+                return v;
             }
-            else{
-                numberOfUnselected++;            }
-        }
-        if( numberOfUnselected == vertexArray.length){
-            p.addVertex;
-        }
+        return null;
     }
 
-
-    addVertex(v){
-        this.vertexArray.push(v);
+    
+    addVertex(x,y){
+        let v = new Vertex(x,y,this.vertices.length);
         this.vertices.push(v);
-       
-        this.connections[this.connectionsNumber] =[selectVertex,v];
-        selectVertex = vertices.length ;
-        this.connectionsNumber ++;
+        return v;
     }
 
     draw(){
+
+        for(var i = 0; i< vertexArray.length; i++){
+            v.draw();
+        }
         
     }
-    selectVertex(v){
 
+    selectVertex(v){
+        
     }
 
     unselectVertex(){
@@ -55,5 +50,3 @@
     }
 
     
-
-}

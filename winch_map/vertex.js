@@ -3,7 +3,7 @@ class Vertex{
         this.x = x;
         this.y = y;
         this.id = id;
-       
+        this.radius = id;
 
         
     }    

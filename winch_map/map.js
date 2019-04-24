@@ -33,7 +33,6 @@ function draw(){
 }
 
 function mousePressed(){
-    
-    getVertexAtPoint(mouseX,mouseY); 
+    mapcreater.detectingClick(mouseX,mouseY);
 
 }
