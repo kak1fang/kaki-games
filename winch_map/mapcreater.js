@@ -1,19 +1,19 @@
-class Mapcreater {
+class MapCreater {
 
     constructor(graph) {
         this.graph = graph;
     }
 
-    detectingClick(){
-    const selectVertex  = getVertexAtPoint(x,y);
-    const se
-
-    if(!selectVertex){
-        addVertex(graph,x,y);
-    }
-
-    if(selectVertex ===)
+    detectingClick(x,y) {
+        const mouseOnVertex = this.graph.getVertexAtPoint(x, y);
 
 
+        if (!mouseOnVertex) {
+            addVertex(graph, x, y);
+        }
+
+        if (mouseOnVertex === true) {
+            graph.selectVertex = v.id;
+        }
     }
 }

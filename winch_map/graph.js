@@ -14,17 +14,19 @@
     }
 
     getVertexAtPoint(x,y){
-        for(var i=0; i < vertexArray.length; i++){
-            let v = vertexArray[i];
-            if(v.mouseWithVertx(x,y) == mouseOnVertex){
+        for(var i=0; i < this.vertexArray.length; i++){
+            let v = this.vertexArray[i];
+            if(v.mouseWithVertx(x,y) == true){
                 return v;
             }
+        
+        }
         return null;
     }
 
     
     addVertex(x,y){
-        let v = new Vertex(x,y,this.vertices.length);
+        let v = new Vertex(x,y,this.vertexArray.length);
         this.vertices.push(v);
         return v;
     }
@@ -38,7 +40,7 @@
     }
 
     selectVertex(v){
-        
+
     }
 
     unselectVertex(){
@@ -50,3 +52,4 @@
     }
 
     
+    }

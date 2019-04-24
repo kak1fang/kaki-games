@@ -1,9 +1,17 @@
-
+var mapCreater;
+var graph;
 let selectVertex = 100;
 var numberOfUnselected = 0;
 var vertexSelected = false;
 var mouseonVertex = true;
+
 function preload(){
+    
+    graph = new Graph();
+    mapCreater = new MapCreater(graph);
+    
+
+
 
 }
 
@@ -33,6 +41,8 @@ function draw(){
 }
 
 function mousePressed(){
-    mapcreater.detectingClick(mouseX,mouseY);
+    mapCreater.detectingClick(mouseX,mouseY);
 
+
+    Graph.draw();
 }

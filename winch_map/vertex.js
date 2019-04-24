@@ -12,16 +12,17 @@ class Vertex{
     
 
 
-    mouseWithVertex(){
-        if( dist(this.x, this.y, mouseX, mouseY) <= 10 ){
-            return mouseOnVertex;
+    mouseWithVertex(x,y){
+        if( dist(this.x, this.y, x, y) <= 10 ){
+            return true;
         }
+        return false;
     }
 
 
 
-    draw(selected){
-        if(selected){
+    draw(){
+        if(this.id = graph.selectVertex){
             fill('blue');
             
         } else{
