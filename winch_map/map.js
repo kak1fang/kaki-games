@@ -25,9 +25,11 @@ function setup(){
 
 function draw(){
     strokeWeight(3);
+    
+    
+    graph.drawConnections();
     graph.draw();
     mapCreater.draw();
-    graph.drawConnections();
     
     
 
