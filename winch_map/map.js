@@ -27,7 +27,7 @@ function draw(){
     strokeWeight(3);
     graph.draw();
     mapCreater.draw();
-    graph.draw.connections();
+    graph.drawConnections();
     
     
 
@@ -43,6 +43,10 @@ function draw(){
 }
 
 function mousePressed(){
+    if (mouseX < 0 || mouseY < 0 || mouseX > width || mouseY > height) {
+        // don't process clicks that aren't on the maps
+        return;
+    }
     mapCreater.detectingClick(mouseX, mouseY);
     
 

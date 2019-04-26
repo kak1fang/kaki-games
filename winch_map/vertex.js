@@ -3,7 +3,7 @@ class Vertex{
         this.x = x;
         this.y = y;
         this.id = id;
-        this.radius = id;
+        this.radius = 10;
 
         
     }    
@@ -13,7 +13,7 @@ class Vertex{
 
 
     mouseWithVertex(x,y){
-        if( dist(this.x, this.y, x, y) <= 10 ){
+        if( dist(this.x, this.y, x, y) <= this.radius ){
             return true;
         }
         return false;
@@ -29,7 +29,7 @@ class Vertex{
             fill('white');
             
         }
-        ellipse(this.x, this.y, 20, 20);
+        ellipse(this.x, this.y, 2 * this.radius, 2 * this.radius);
         
     }
 
