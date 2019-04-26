@@ -25,7 +25,9 @@ function setup(){
 
 function draw(){
     strokeWeight(3);
-    
+    graph.draw();
+    mapCreater.draw();
+    graph.draw.connections();
     
     
 
@@ -41,8 +43,8 @@ function draw(){
 }
 
 function mousePressed(){
-    mapCreater.detectingClick(mouseX,mouseY);
+    mapCreater.detectingClick(mouseX, mouseY);
+    
 
-
-    Graph.draw();
+    
 }

@@ -2,7 +2,7 @@
 
     constructor(){
         
-        this.selectVertex = null;
+        
         this.vertexArray = [];
         this.connections = {};
         this.connectionsNumber = 0;
@@ -10,13 +10,13 @@
     }
 
     getVertex(id){
-
+        return this.vertexArray[i];
     }
 
     getVertexAtPoint(x,y){
         for(var i=0; i < this.vertexArray.length; i++){
             let v = this.vertexArray[i];
-            if(v.mouseWithVertx(x,y) == true){
+            if(v.mouseWithVertex(x,y) == true){
                 return v;
             }
         
@@ -27,13 +27,14 @@
     
     addVertex(x,y){
         let v = new Vertex(x,y,this.vertexArray.length);
-        this.vertices.push(v);
+        this.vertexArray.push(v);
         return v;
     }
 
-    draw(){
+    draw(x,y){
 
-        for(var i = 0; i< vertexArray.length; i++){
+        for(var i = 0; i< this.vertexArray.length; i++){
+            let v = this.vertexArray[i];
             v.draw();
         }
         
@@ -47,9 +48,16 @@
 
     }
 
-    addConnection(){
+    addConnection(v,pv){
+        let v = this.vertexArray[v];
+        let pv = this.vertexArray[pv];
+
+        this.connections.push(v.id, pv.id);
 
     }
 
+    drawConnection(v,pv){
+        line(v.x, v.y, pv.x, pv.y);
+    }
     
     }

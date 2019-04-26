@@ -21,8 +21,8 @@ class Vertex{
 
 
 
-    draw(){
-        if(this.id = graph.selectVertex){
+    draw(selected){
+        if(selected){
             fill('blue');
             
         } else{
