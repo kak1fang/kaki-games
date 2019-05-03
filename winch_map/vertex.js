@@ -3,7 +3,7 @@ class Vertex{
         this.x = x;
         this.y = y;
         this.id = id;
-        this.radius = 10;
+        this.radius = 8;
 
         
     }    
@@ -23,7 +23,7 @@ class Vertex{
 
     draw(selected){
         if(selected){
-            fill('blue');
+            fill('yellow');
             
         } else{
             fill('white');

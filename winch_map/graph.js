@@ -86,4 +86,16 @@ class Graph {
             }
         }
     }
+
+    loadJson(d){
+        for(var i = 0; i < d.vertexArray.length; i++){
+            let v = new Vertex(d.vertexArray[i].x, d.vertexArray[i].y, d.vertexArray[i].id);
+            this.vertexArray.push(v);
+            this.connections.push([]);
+            for(var ai = 0; ai < d.connections[i].length; i++){
+                let c = d.connections[i][ai];
+                this.connections[i].push[c];
+            }
+        }
+    }
 }
