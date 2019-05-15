@@ -7,6 +7,11 @@ var numberOfUnselected = 0;
 var vertexSelected = false;
 var mouseonVertex = true;
 
+var createMode;
+var searchMode;
+
+
+
 
 function preload() {
 
@@ -24,6 +29,8 @@ function setup() {
     createCanvas(800, 600);
     background('white');
     resizeCanvas(img.width, img.height);
+    inputVertex = createFileInput(loadVertex);
+    inputVertex.parent('controls');
 
 
 }
@@ -69,9 +76,10 @@ function saveVertex(){
 
 }
 
-function loadVertex(){
-    let inputVertex = document.querySelector('#uploadVertex');
+function loadVertex(file){
     let g = new Graph();
-    g.loadJson(inputVertex);
+    
+    loadJSON(file.data, g.loadFromJson());
+    
     
 }

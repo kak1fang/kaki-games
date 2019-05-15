@@ -87,7 +87,7 @@ class Graph {
         }
     }
 
-    loadJson(d){
+    loadFromJson(d){
         for(var i = 0; i < d.vertexArray.length; i++){
             let v = new Vertex(d.vertexArray[i].x, d.vertexArray[i].y, d.vertexArray[i].id);
             this.vertexArray.push(v);
