@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="map.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     
-    <title>ddddddddddddddddddddddd</title>
+    <title>Winch Map</title>
     <script src="p5.min.js"></script>
     <script src="p5.dom.min.js"></script>
     <script src="map.js"></script>
@@ -15,24 +15,59 @@
     <script src="line.js"></script>
     <script src="graph.js"></script>
     <script src="mapcreater.js"></script>
+    <script src="mapsearcher.js"></script>
     <title>Document</title>
+
+    <style>
+            body, html {
+                font-family: sans-serif;
+                background: #F6F6F6;
+                margin: 0;
+            }
+            .controls {
+                display: flex;
+                flex-direction: row;
+                margin: 0 0.5em;
+            }
+            .controlBox {
+                background: #fff;
+                margin: 1em 0.5em;
+                padding: 1em;
+                /* flex: 1; */
+                box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);    
+            }
+            .controlBox h5 {
+                margin-top: 0;
+                font-weight: 700;
+                font-size: 0.8em;
+                color: rgb(17, 139, 154);
+            }
+            canvas {
+                margin: 0 1em;
+            }
+            h3 {
+                text-align: center;
+                margin-bottom: 0.25em;
+            }
+        </style>
 </head>
 <body>
     <div>
-        <center>
-            <h3>
-                winchmap
-            </h3>
-        </center>
+        <h3>
+            winchmap
+        </h3>
     </div>
     
-
-    <div id="controls">
-        <button onclick = "saveVertex()"> SAVE</button>
-        <input type="radio" id = "create" name = "mapMode" value = "create" checked> 
-    </div>
-   
-    
-
+    <div class="controls">
+            <div class="controlBox">
+                <h5>Mode</h5>
+                <input type="radio" name="mode" value="MAP_CREATE" checked onclick="changeMode(this.value)"> Map Creation<br>
+                <input type="radio" name="mode" value="MAP_SEARCH" onclick="changeMode(this.value)"> Map Search<br>
+            </div>
+            <div class="controlBox" id="saveLoad">
+                <h5>Save / Load</h5>
+                <button onclick = "saveVertex()"> SAVE</button><br>
+            </div>
+        </div>
 </body>
 </html>

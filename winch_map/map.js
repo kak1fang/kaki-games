@@ -1,4 +1,5 @@
 var mapCreater;
+var mapSearcher;
 var graph;
 let img;
 let inputVertex;
@@ -7,9 +8,9 @@ var numberOfUnselected = 0;
 var vertexSelected = false;
 var mouseonVertex = true;
 
-var createMode;
-var searchMode;
-
+const MAP_SEARCH_MODE = "MAP_SEARCH";
+const MAP_CREATE_MODE = "MAP_CREATE";
+let mode = MAP_CREATE_MODE;
 
 
 
@@ -17,6 +18,7 @@ function preload() {
 
     graph = new Graph();
     mapCreater = new MapCreater(graph);
+    mapSearcher = new MapSearcher(graph);
     img = loadImage('winchendon.png');
     
     
@@ -30,7 +32,7 @@ function setup() {
     background('white');
     resizeCanvas(img.width, img.height);
     inputVertex = createFileInput(loadVertex);
-    inputVertex.parent('controls');
+    inputVertex.parent('saveLoad');
 
 
 }
@@ -44,9 +46,16 @@ function draw() {
     
     graph.drawConnections();
     graph.draw();
-    mapCreater.draw();
 
-
+    if (mode === MAP_CREATE_MODE) {
+        mapCreater.draw();
+    } else if (mode === MAP_SEARCH_MODE) {
+        mapSearcher.draw();
+        mapSearcher.processHover(mouseX, mouseY);
+        // todo
+    } else {
+        throw "Invalid mode: " + mode;
+    }
 
     // for(var i=0; i<=vertexArray.length-1; i++){
     //     let e = vertexArray[i];
@@ -64,9 +73,14 @@ function mousePressed() {
         // don't process clicks that aren't on the maps
         return;
     }
-    mapCreater.detectingClick(mouseX, mouseY);
 
-
+    if (mode === MAP_CREATE_MODE) {
+        mapCreater.detectingClick(mouseX, mouseY);
+    } else if (mode === MAP_SEARCH_MODE) {
+        mapSearcher.processClick(mouseX, mouseY);
+    } else {
+        throw "Invalid mode: " + mode;
+    }
 
 }
 
@@ -82,4 +96,34 @@ function loadVertex(file){
     loadJSON(file.data, g.loadFromJson());
     
     
+}
+
+
+///////////////////////////////
+//   ADDED BY MR. BLANCHET   //
+///////////////////////////////
+function changeMode(value) {
+    console.log(value);
+    mode = value;
+}
+function drawArrow(fromVertex, toVertex, arrowColor) {
+
+    stroke(arrowColor);
+    strokeWeight(2);
+    fill(arrowColor);
+    
+    const fx = fromVertex.x,
+          fy = fromVertex.y,
+          tx = toVertex.x,
+          ty = toVertex.y,
+          offset = -6;
+
+    line(fx, fy, tx, ty);
+
+    push();
+    const angle = atan2(fy - ty, fx - tx);
+    translate(tx, ty);
+    rotate(angle + HALF_PI);
+    triangle(-offset*0.5, offset, offset*0.5, offset, 0, -offset/2)
+    pop();
 }
