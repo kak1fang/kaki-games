@@ -31,33 +31,15 @@ class MapSearcher {
         // this is how you enqueue something (add it to the end of the array)
         exploredVertices[this.destVertex.id] = true;
         searchQueue.push(this.destVertex);
-        for( var i = 0; i<this.searchQueue.length; i++){
-            for( var a = 0; a < this.graph.connections[this.searchQueue[i]].length; i++){
-                
-            
-                //detect if it is repeat with the searchQueue
-                var repeatDetect;
-                for(v = 0; v < this.searchQueue.length; v++){
-                    if(this.graph.connections[this.destVertex.id][i] != this.searchQueue[v]){
-                        repeatDetect++;
-                    }
+        while (searchQueue.length > 0){
+            let processingVertex = searchQueue.splice(0,1)[0];  
+            for ( var i = 0 ; i < this.graph.connections[processingVertex].length; i++){
+                if(!exploredVertices[this.graph.connections[processingVertex][i]]){
+                    searchQueue.push(this.graph.connections[processingVertex][i]);
                 }
-                if(repeatDetect == this.searchQueue.length){
-                    this.searchQueue.push(this.graph.connections[this.destVertex.id][i])
-                }
-
-                // draw red lines
-                fill('red');
-                line(this.searchQueue[i].x, this.searchQueue[i].y, this.graph.connections[this.searchQueue[i]][a].x, this.graph.connections[this.searchQueue[i]][a].y);
-
-                
-                
-             }
-             exploredVertices.push(this.searchQueue[i]);
-
-             // try to remove from the array but i dont know what to do...
-             const d = exploreQueue.splice(0,1)[0];
-         }
+            }  
+            exploredVertices[processingVertex] = true;
+        }
         
 
         // recommended: consult https://en.wikipedia.org/wiki/Breadth-first_search
