@@ -10,7 +10,7 @@ class Graph {
     }
 
     getVertex(id) {
-        return this.vertexArray[i];
+        return this.vertexArray[id];
     }
 
     getVertexAtPoint(x, y) {
@@ -75,6 +75,7 @@ class Graph {
     }
 
     drawConnections() {
+        stroke(125);
         for (var vid = 0; vid < this.connections.length; vid++) {
 
             for (var i = 0; i < this.connections[vid].length; i++) {

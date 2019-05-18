@@ -33,12 +33,15 @@ class MapSearcher {
         searchQueue.push(this.destVertex);
         while (searchQueue.length > 0){
             let processingVertex = searchQueue.splice(0,1)[0];  
-            for ( var i = 0 ; i < this.graph.connections[processingVertex].length; i++){
-                if(!exploredVertices[this.graph.connections[processingVertex][i]]){
-                    searchQueue.push(this.graph.connections[processingVertex][i]);
+            for ( var i = 0 ; i < this.graph.connections[processingVertex.id].length; i++){
+                const connectionVertexId = this.graph.connections[processingVertex.id][i];
+                const connectionVertex = this.graph.getVertex(connectionVertexId);
+                if(!exploredVertices[connectionVertexId]){
+                    searchQueue.push(connectionVertex);
+                    this.backpoints[connectionVertexId] = processingVertex.id;
+                    exploredVertices[connectionVertexId] = true;
                 }
             }  
-            exploredVertices[processingVertex] = true;
         }
         
 

@@ -22,6 +22,7 @@ class Vertex{
 
 
     draw(selected){
+        stroke(0);
         if(selected){
             fill('yellow');
             
